@@ -1,5 +1,6 @@
 package com.example.tmdbcompose.di
 
+import com.example.tmdbcompose.repository.TmdbRepository
 import com.example.tmdbcompose.service.TMDBApi
 import com.example.tmdbcompose.util.Constants.BASE_URL
 import dagger.Module
@@ -14,11 +15,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-   /* @Provides
+    @Provides
     @Singleton
     fun provideCryptoRepository(
         api: TMDBApi
-    ) = CryptoRepository(api = api)*/
+    ) = TmdbRepository(api = api)
 
     @Singleton
     @Provides
