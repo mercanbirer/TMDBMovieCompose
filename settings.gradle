@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "TMDBCompose"
+rootProject.name = "TMDBMovieCompose"
 include ':app'
