@@ -1,29 +1,34 @@
 package com.example.tmdbcompose.model
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class MovieDetail(
-    val adult: Boolean,
-    val backdrop_path: String,
-    val belongs_to_collection: Any,
-    val budget: Int,
-    val genres: List<Genre>,
-    val homepage: String,
-    val id: Int,
-    val imdb_id: String,
-    val original_language: String,
-    val original_title: String,
-    val overview: String,
-    val popularity: Double,
-    val poster_path: String,
-    val production_companies: List<ProductionCompany>,
-    val production_countries: List<ProductionCountry>,
-    val release_date: String,
-    val revenue: Int,
-    val runtime: Int,
-    val spoken_languages: List<SpokenLanguage>,
-    val status: String,
-    val tagline: String,
-    val title: String,
-    val video: Boolean,
-    val vote_average: Double,
-    val vote_count: Int
+    @SerialName("id")
+    val id: Int? = 0,
+    @SerialName("title")
+    val title: String? = "",
+    @SerialName("poster_path")
+    val posterPath: String? = "",
+    @SerialName("backdrop_path")
+    val backdropPath: String? = "",
+    @SerialName("overview")
+    val overview: String? = "",
+    @SerialName("popularity")
+    val popularity: Double? = 0.0,
+    @SerialName("release_date")
+    val releaseDate: String? = "",
+    @SerialName("vote_average")
+    val voteAverage: Double? = 0.0,
+    @SerialName("vote_count")
+    val voteCount: Int? = 0,
+    @SerialName("runtime")
+    val runtime: Int? = 0,
+    @SerialName("tagline")
+    val tagline: String? = "",
+    @SerialName("imdb_id")
+    val imdbId: String? = ""
+
+
 )
