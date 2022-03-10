@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MovieDetail(
     @SerialName("id")
-    val id: Int? = 0,
+    val workerId: Long = 0,
     @SerialName("title")
-    val title: String? = "",
+    val title: String = "",
     @SerialName("poster_path")
     val posterPath: String? = "",
     @SerialName("backdrop_path")

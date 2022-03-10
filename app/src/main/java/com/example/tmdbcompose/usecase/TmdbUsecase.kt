@@ -7,6 +7,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import java.io.IOException
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -25,6 +27,5 @@ class TmdbUsecase @Inject constructor(
         } catch (e: Exception) {
 //            emit(Resource.Error("Error"))
         }
-
     }
 }
