@@ -14,13 +14,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
-    @Provides
-    @Singleton
-    fun provideCryptoRepository(
-        api: TMDBApi
-    ) = TmdbRepository(api = api)
-
+    
     @Singleton
     @Provides
     fun provideCryptoApi(): TMDBApi {
@@ -30,4 +24,10 @@ object AppModule {
             .build()
             .create(TMDBApi::class.java)
     }
+    @Provides
+    @Singleton
+    fun provideTMDBRepository(api: TMDBApi): TmdbRepository {
+        return TmdbRepository(api)
+    }
+
 }

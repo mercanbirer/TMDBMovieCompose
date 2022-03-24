@@ -1,34 +1,32 @@
 package com.example.tmdbcompose.model
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
 data class MovieDetail(
-    @SerialName("id")
+    @SerializedName("id")
     val workerId: Long = 0,
-    @SerialName("title")
+    @SerializedName("title")
     val title: String = "",
-    @SerialName("poster_path")
-    val posterPath: String? = "",
-    @SerialName("backdrop_path")
+    @SerializedName("poster_path")
+    var posterPath: String? = "",
+    @SerializedName("backdrop_path")
     val backdropPath: String? = "",
-    @SerialName("overview")
+    @SerializedName("overview")
     val overview: String? = "",
-    @SerialName("popularity")
+    @SerializedName("popularity")
     val popularity: Double? = 0.0,
-    @SerialName("release_date")
+    @SerializedName("release_date")
     val releaseDate: String? = "",
-    @SerialName("vote_average")
+    @SerializedName("vote_average")
     val voteAverage: Double? = 0.0,
-    @SerialName("vote_count")
+    @SerializedName("vote_count")
     val voteCount: Int? = 0,
-    @SerialName("runtime")
+    @SerializedName("runtime")
     val runtime: Int? = 0,
-    @SerialName("tagline")
+    @SerializedName("tagline")
     val tagline: String? = "",
-    @SerialName("imdb_id")
+    @SerializedName("imdb_id")
     val imdbId: String? = ""
-
-
-)
+): java.io.Serializable
