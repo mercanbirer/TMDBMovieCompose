@@ -1,2 +1,4 @@
 -Jetpack Compose
-Listing data with the TMDB api using compose.
+-MVVM
+-Coroutine
+-Retrofit
