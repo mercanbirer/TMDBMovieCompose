@@ -26,24 +26,21 @@ class TmdbViewModel @Inject constructor(
     private val _apiMovie = MutableStateFlow<Resource<Movie>>(Resource.Idle())
     var apiMovie: StateFlow<Resource<Movie>> = _apiMovie
 
-
     fun getMovie() {
         viewModelScope.launch {
             usecase.getMovie().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         _apiMovie.value = Resource.Loading()
-                        Log.e("loading", "")
+                        Timber.tag("Loading").e("")
                     }
                     is Resource.Success -> {
                         _apiMovie.value = Resource.Success(result.data!!)
-
-                        Log.e("success", result.data.toString())
+                        Timber.tag("Success").e("")
                     }
                     is Resource.Error -> {
                         _apiMovie.value = Resource.Error("error")
-                        Log.e("error", "")
-
+                        Timber.tag("Error").e("")
                     }
                     is Resource.Idle -> {
                         _apiMovie.value = Resource.Idle()
