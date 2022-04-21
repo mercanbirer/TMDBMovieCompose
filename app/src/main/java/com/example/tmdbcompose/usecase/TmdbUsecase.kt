@@ -3,6 +3,7 @@ package com.example.tmdbcompose.usecase
 import com.example.tmdbcompose.di.Resource
 import com.example.tmdbcompose.model.Movie
 import com.example.tmdbcompose.model.MovieDetail
+import com.example.tmdbcompose.model.Series
 import com.example.tmdbcompose.repository.TmdbRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -32,22 +33,22 @@ class TmdbUsecase @Inject constructor(
             emit(Resource.Error("Couldn't reach server. Check your internet connection."))
         }
     }
-    /*
-        fun getMovie(): Flow<Resource<Movie>> {
+    fun getSeries(): Flow<Resource<Series>> {
         return flow {
             emit(Resource.Loading())
             val users = withContext(Dispatchers.IO){
-                repository.getMovie()
+                repository.getSeries()
             }
-            Timber.tag("users").e(users.toString())
             emit(Resource.Success(users))
-
-        }.catch {
-            emit(Resource.Error(""))
-            Timber.tag("erorrrrrrrr").e(it.toString())
-        }.flowOn(Dispatchers.IO)
+        }.catch (){
+            Timber.tag("error").e("")
+            emit(Resource.Error("An unexpected error occured"))
+        }.catch (){
+            Timber.tag("error").e("")
+            emit(Resource.Error("Couldn't reach server. Check your internet connection."))
+        }
     }
-    */
+
     fun getMovieDetail(layoutType: Long): Flow<Resource<MovieDetail>> = flow {
        /* try {
             emit(Resource.Loading())

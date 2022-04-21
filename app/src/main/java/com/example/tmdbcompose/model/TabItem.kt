@@ -1,7 +1,6 @@
 package com.example.tmdbcompose.model
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
 import com.example.tmdbcompose.R
 import com.example.tmdbcompose.view.MovieScreen
 import com.example.tmdbcompose.view.SerieScreen

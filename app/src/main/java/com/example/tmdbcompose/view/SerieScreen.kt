@@ -1,19 +1,78 @@
 package com.example.tmdbcompose.view
 
 import android.util.Log
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.tmdbcompose.R
+import com.example.tmdbcompose.di.Resource
 import com.example.tmdbcompose.viewmodel.TmdbViewModel
+import timber.log.Timber
 
 @Composable
 fun SerieScreen(
     viewModel: TmdbViewModel = hiltViewModel()
 ){
+    LaunchedEffect(Unit, block = {
+        viewModel.getSeries()
+    })
+    val serie by viewModel.apiSerie.collectAsState()
 
-    Column {
-        Text(text = "MERCAN")
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            when (serie) {
+                is Resource.Loading -> {
+                    CircularProgressIndicator(color = colorResource(id = R.color.black))
+                }
+                is Resource.Success -> {
+                    LazyColumn(modifier = Modifier.fillMaxSize()) {
+                        val list = serie.data!!.results
+                        items(list.size){
+                            Text(text = list[it].name,
+                                fontSize = 20.sp,
+                                style = MaterialTheme.typography.h5,
+                                fontFamily = FontFamily.Default,
+                                fontWeight = FontWeight.Bold,)
+                            Spacer(modifier = Modifier.height(10.dp))
+                        }
+                    }
+                }
+                is Error -> {
+                    Timber.tag("error").e("")
+
+                    Text(
+                        text = serie.message!!,
+                        fontSize = 12.sp,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 20.dp),
+                        textAlign = TextAlign.Center,
+                        color = colorResource(id = R.color.purple_200)
+                    )
+                }
+                else -> {}
+            }
+        }
     }
 }

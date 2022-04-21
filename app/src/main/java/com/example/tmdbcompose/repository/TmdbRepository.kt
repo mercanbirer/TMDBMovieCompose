@@ -2,6 +2,7 @@ package com.example.tmdbcompose.repository
 
 import com.example.tmdbcompose.model.Movie
 import com.example.tmdbcompose.model.MovieDetail
+import com.example.tmdbcompose.model.Series
 import com.example.tmdbcompose.service.TMDBApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -14,6 +15,10 @@ class TmdbRepository @Inject constructor(
 
     override suspend fun getMovie(): Movie {
         return  api.getMovie()
+    }
+
+    override suspend fun getSeries(): Series {
+        return  api.getSeries()
     }
 
     override suspend fun getMovieDetail(movieId: Long): MovieDetail {

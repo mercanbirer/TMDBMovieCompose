@@ -32,7 +32,6 @@ fun MovieScreen(
     LaunchedEffect(Unit, block = {
         viewModel.getMovie()
     })
-    val tmdbResponse by viewModel.tmdbResponse.collectAsState()
     val movie by viewModel.apiMovie.collectAsState()
 
 
@@ -44,7 +43,6 @@ fun MovieScreen(
             ) {
                 when (movie) {
                     is Resource.Loading -> {
-                        Log.e("deneme","load")
                         CircularProgressIndicator(color = colorResource(id = R.color.black))
                     }
                     is Resource.Success -> {

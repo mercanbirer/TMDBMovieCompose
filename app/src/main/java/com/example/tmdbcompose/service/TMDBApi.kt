@@ -2,6 +2,7 @@ package com.example.tmdbcompose.service
 
 import com.example.tmdbcompose.model.Movie
 import com.example.tmdbcompose.model.MovieDetail
+import com.example.tmdbcompose.model.Series
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -15,4 +16,7 @@ interface TMDBApi {
     @GET("movie/{movie_id}")
     suspend fun getMovieDetail(
         @Path(value = "movie_id") movieId: Long): MovieDetail
+
+    @GET("discover/tv")
+     suspend fun getSeries(): Series
 }

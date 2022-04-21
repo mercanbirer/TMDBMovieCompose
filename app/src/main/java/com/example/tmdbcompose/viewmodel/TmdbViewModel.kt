@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.tmdbcompose.di.Resource
 import com.example.tmdbcompose.model.Movie
 import com.example.tmdbcompose.model.MovieDetail
+import com.example.tmdbcompose.model.Series
 import com.example.tmdbcompose.usecase.TmdbUsecase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,6 +27,9 @@ class TmdbViewModel @Inject constructor(
     private val _apiMovie = MutableStateFlow<Resource<Movie>>(Resource.Idle())
     var apiMovie: StateFlow<Resource<Movie>> = _apiMovie
 
+    private val _apiSerie = MutableStateFlow<Resource<Series>>(Resource.Idle())
+    var apiSerie: StateFlow<Resource<Series>> = _apiSerie
+
     fun getMovie() {
         viewModelScope.launch {
             usecase.getMovie().collect { result ->
@@ -44,6 +48,30 @@ class TmdbViewModel @Inject constructor(
                     }
                     is Resource.Idle -> {
                         _apiMovie.value = Resource.Idle()
+                    }
+                }
+            }
+        }
+    }
+
+    fun getSeries() {
+        viewModelScope.launch {
+            usecase.getSeries().collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        _apiSerie.value = Resource.Loading()
+                        Timber.tag("Loading").e("")
+                    }
+                    is Resource.Success -> {
+                        _apiSerie.value = Resource.Success(result.data!!)
+                        Timber.tag("Success").e("")
+                    }
+                    is Resource.Error -> {
+                        _apiSerie.value = Resource.Error("error")
+                        Timber.tag("Error").e("")
+                    }
+                    is Resource.Idle -> {
+                        _apiSerie.value = Resource.Idle()
                     }
                 }
             }
