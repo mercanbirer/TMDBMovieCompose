@@ -8,4 +8,3 @@ object Constants {
     const val LANGUAGE = "tr"
     const val connectionTimeout: Int = 10000
 }
-//https://api.themoviedb.org/3/movie/popular?api_key=cc17eb7820fb50a9fb7a9

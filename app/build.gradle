@@ -63,7 +63,6 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
 
-
     implementation "androidx.compose.material:material-icons-core:$compose_version"
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
@@ -92,6 +91,17 @@ dependencies {
 
     // Coil
     implementation "io.coil-kt:coil-compose:1.4.0"
+
+   // Misc libs
+    def accompanist = "0.12.0"
+    implementation "com.google.accompanist:accompanist-insets:$accompanist"
+    implementation "com.google.accompanist:accompanist-coil:$accompanist"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist"
+    implementation "com.google.accompanist:accompanist-placeholder-material:$accompanist"
+    implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist"
+    implementation 'com.github.ajalt:timberkt:1.5.1'
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.10"
+    implementation "com.dropbox.mobile.store:store4:4.0.2-KT15"
 
     //Dagger - Hilt
     implementation "com.google.dagger:hilt-android:2.38.1"
