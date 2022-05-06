@@ -79,6 +79,8 @@ fun MovieScreen(
                                             )
                                     )
                                 }
+
+
                                 Text(
                                     text = dataList[it].title,
                                     fontSize = 18.sp,
